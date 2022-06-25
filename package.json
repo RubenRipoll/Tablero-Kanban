@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "Ruben Ripoll <ripoll45@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
 }
