@@ -4,73 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KanBan Table BrokenRubi</title>
+    <title>KanBan Broken Rubik</title>
     <link rel="stylesheet" href="./public/css/estilos.css">
+    <link rel="shortcut icon" href="/BrokenRubik.PNG" />
 </head>
 <body>
 
-    <div class="container">
-        <div class="kanban-heading">
-            <strong class="kanban-heading-text">Kanban Board</strong>
+    <!-- modal -->
+    <div class="modal" id="todo_form">
+        <div class="header">
+          <div class="title">Add Todo</div>
+          <button class="btn close-modal">&times;</button>
         </div>
-        <div class="kanban-board">
-            <div class="kanban-block" id="todo" >
-                <strong>To Do</strong>
-                <div class="task-button-block">
-                    <button id="task-button" >Create new task</span>
-                </div>
-                <div class="task" id="task1">
-                    <span>Task 1</span>
-                </div>
-                <div class="task" id="task2">
-                    <span>Task 2</span>
-                </div>
-                <div class="task" id="task3">
-                    <span>Task 3</span>
-                </div>
-                <div class="task" id="task4">
-                    <span>Task 4</span>
-                </div>
-                <div class="task" id="task5">
-                    <span>Task 5</span>
-                </div>
-                <div class="task" id="task6">
-                    <span>Task 6</span>
-                </div>
-            </div>
-            <div class="kanban-block" id="inprogress" >
-                <strong>In Progress</strong>
-            </div>
-            <div class="kanban-block" id="done" >
-                <strong>Done</strong>
-            </div>
-            <div class="create-new-task-block" id="create-new-task-block">
-                <strong>New Task</strong>
-                <span class="form-row">
-                    <label class="form-row-label" for="task-name">Task</label>
-                    <input class="form-row-input" type="text" name="task-name" id="task-name">
-                </span>
-                <span class="form-row">
-                    <label class="form-row-label" for="task-name">Description</label>
-                    <textarea class="form-row-input" name="task-description" id="task-description" cols="70" rows="10"></textarea>
-                </span>
-                <span class="form-row">
-                    <label class="form-row-label" for="task-name">Status</label>
-                    <select class="form-row-input" name="task-status" id="task-status">
-                        <option value="todo">To Do</option>
-                        <option value="inprogress">In Progress</option>
-                        <option value="done">Done</option>
-                    </select>
-                </span>
-                <span class="form-row-buttons">
-                    <button id="edit-button" >Edit</span>
-                    <button id="save-button" >Save</span>
-                    <button id="cancel-button" >Cancel</span>
-                </span>
-            </div>
+        <div class="body">
+          <input type="text" id="todo_input" />
+          <input type="submit" value="Add Todo" id="todo_submit" />
         </div>
-    </div>
-    
+      </div>
+      <!-- todo -->
+      <div class="todo-container">
+        <div class="status" id="no_status">
+          <h1>Tasks</h1>
+          <button id="add_btn" data-target-modal="#todo_form">+ Add Todo</button>
+          <div class="todo" draggable="true">
+            Buy a Pizza
+            <span class="close">&times;</span>
+          </div>
+        </div>
+        <div class="status" id="to-do">
+          <h1>To Do</h1>
+        </div>
+        <div class="status" id="in-progress">
+          <h1>In Progress</h1>
+        </div>
+        <div class="status" id="done">
+          <h1>Done</h1>
+        </div>
+      </div>
+  
+      <div id="overlay"></div>
+  
+      <script src="script.js"></script>
     
     <script src="./public/js/vendor/jquery-3.6.0.js"></script>
     <script src="./public/js/vendor/underscore-esm.js"></script>
