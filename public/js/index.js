@@ -1,6 +1,7 @@
 // Selecciono elementos del DOM
 const todos = document.querySelectorAll(".todo");
 const all_status = document.querySelectorAll(".status");
+const d = document;
 
 let draggableTodo = null;
 
@@ -53,13 +54,13 @@ function dragDrop() {
 }
 
 
-const btns = document.querySelectorAll("[data-target-modal]");
-const close_modals = document.querySelectorAll(".close-modal");
-const overlay = document.getElementById("overlay");
+const btns = d.querySelectorAll("[data-target-modal]");
+const close_modals = d.querySelectorAll(".close-modal");
+const overlay = d.getElementById("overlay");
 
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    document.querySelector(btn.dataset.targetModal).classList.add("active");
+    d.querySelector(btn.dataset.targetModal).classList.add("active");
     overlay.classList.add("active");
   });
 });
@@ -74,50 +75,58 @@ close_modals.forEach((btn) => {
 
 window.onclick = (event) => {
   if (event.target == overlay) {
-    const modals = document.querySelectorAll(".modal");
+    const modals = d.querySelectorAll(".modal");
     modals.forEach((modal) => modal.classList.remove("active"));
     overlay.classList.remove("active");
   }
 };
 
 // Crear tarea
-const todo_submit = document.getElementById("todo_submit");
+const todo_submit = d.getElementById("todo_submit");
 
 todo_submit.addEventListener("click", createTodo);
 
 function createTodo() {
-  const todo_div = document.createElement("div");
-  const input_val = document.getElementById("todo_input").value;
-  const txt = document.createTextNode(input_val);
+  const todo_div = d.createElement("div");
+  const input_val = d.getElementById("todo_input").value;
+  const txt = d.createTextNode(input_val);
 
-  todo_div.appendChild(txt);
-  todo_div.classList.add("todo");
-  todo_div.setAttribute("draggable", "true");
+  if (input_val) {
+    todo_div.appendChild(txt);
+    todo_div.classList.add("todo");
+    todo_div.setAttribute("draggable", "true");
 
-  
-  const span = document.createElement("span");
-  const span_txt = document.createTextNode("\u00D7");
+  } else {
+    return alert("No ha introducido nada")
+  }
+
+  const span = d.createElement("span");
+  const span_txt = d.createTextNode("\u00D7");
   span.classList.add("close");
   span.appendChild(span_txt);
-
+  
   todo_div.appendChild(span);
-
+  
   no_status.appendChild(todo_div);
-
+  
   span.addEventListener("click", () => {
     span.parentElement.style.display = "none";
   });
-
-
+  
   todo_div.addEventListener("dragstart", dragStart);
   todo_div.addEventListener("dragend", dragEnd);
-
-  document.getElementById("todo_input").value = "";
+  
+  d.getElementById("todo_input").value = "";
   todo_form.classList.remove("active");
   overlay.classList.remove("active");
+
+
+  //localstorage 
+  
+
 }
 
-const close_btns = document.querySelectorAll(".close");
+const close_btns = d.querySelectorAll(".close");
 
 close_btns.forEach((btn) => {
   btn.addEventListener("click", () => {
